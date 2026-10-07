@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Midterms 2026 · Congressional Control</title>
+<style>
+:root{color-scheme:dark;--bg:#03050b;--panel:rgba(14,19,34,.62);--ink:#eef2ff;--mute:#7a86a8;--line:rgba(130,150,255,.14);--d:#5b8cff;--r:#ff3d6e;--i:#ffb347;--acc:#22e4ff;--grid:rgba(120,150,255,.045);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+background-image:radial-gradient(600px 400px at 8% -5%,rgba(91,140,255,.18),transparent 70%),radial-gradient(600px 400px at 95% 0%,rgba(255,61,110,.14),transparent 70%),linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:auto,auto,40px 40px,40px 40px;background-attachment:fixed;min-height:100vh}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 48px}
+.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+header{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end;margin-bottom:22px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 10px var(--acc);animation:p 2s infinite}
+@keyframes p{50%{opacity:.35}}
+h1{margin:6px 0 0;font-size:clamp(26px,5vw,42px);letter-spacing:-.02em;line-height:1.1}
+.count{display:flex;gap:10px}
+.count div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;text-align:center;min-width:64px}
+.count b{display:block;font-size:24px}
+.count span{font-size:10px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase}
+.grid{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,var(--d),var(--acc),var(--r))}
+.card h2{margin:0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.ctrl{display:flex;align-items:baseline;gap:10px;margin:8px 0 2px}
+.ctrl .big{font-size:30px;font-weight:700;letter-spacing:-.02em}
+.tag{font-size:11px;padding:3px 9px;border-radius:99px;border:1px solid currentColor}
+.R{color:var(--r)}.D{color:var(--d)}.I{color:var(--i)}
+svg.h{width:100%;height:auto;display:block;margin-top:6px}
+svg.h circle{transition:opacity .25s}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--mute);margin-top:4px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:baseline}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.nums div{border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.nums b{font-size:22px;display:block}
+.nums span{font-size:11px;color:var(--mute)}
+.bar{display:flex;height:12px;border-radius:99px;overflow:hidden;background:var(--line);margin:8px 0}
+.bar i{display:block;height:100%}
+.note{font-size:12.5px;color:var(--mute);line-height:1.5;margin:8px 0 0}
+button{font:inherit;font-size:12px;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:99px;padding:5px 12px;cursor:pointer}
+button[aria-pressed="true"]{background:var(--acc);color:#04121a;border-color:var(--acc)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.wide{grid-column:1/-1}
+.races{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;margin-top:12px}
+.race{border:1px solid var(--line);border-left-width:3px;border-radius:10px;padding:9px 11px;font-size:13px}
+.race.D{border-left-color:var(--d);color:var(--ink)}.race.R{border-left-color:var(--r);color:var(--ink)}
+.race b{display:block}.race span{font-size:11.5px;color:var(--mute)}
+h3{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:16px 0 0}
+footer{margin-top:20px;font-size:12px;color:var(--mute);line-height:1.6}
+
+h1{background:linear-gradient(100deg,#fff 20%,var(--acc) 60%,var(--d));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+.card,.count div,.race,.nums div{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.card{box-shadow:0 0 0 1px rgba(255,255,255,.02) inset,0 20px 60px -20px rgba(0,0,0,.8);border-radius:20px}
+.card::before{height:1px;opacity:.9;box-shadow:0 0 14px var(--acc)}
+.nums div,.race{background:rgba(255,255,255,.02)}
+.nums b{text-shadow:0 0 18px currentColor}
+.tag{background:rgba(255,255,255,.03);box-shadow:0 0 14px -4px currentColor}
+.big.R,.big.D{text-shadow:0 0 24px currentColor}
+svg.h circle.up{filter:drop-shadow(0 0 3px currentColor)}
+svg.h circle[fill="var(--r)"]{color:var(--r)}svg.h circle[fill="var(--d)"]{color:var(--d)}svg.h circle[fill="var(--i)"]{color:var(--i)}
+.race{transition:transform .2s,border-color .2s}.race:hover{transform:translateY(-2px)}
+.race.D:hover{box-shadow:0 0 20px -6px var(--d)}.race.R:hover{box-shadow:0 0 20px -6px var(--r)}
+button:hover{border-color:var(--acc)}
+.eyebrow{text-shadow:0 0 12px var(--acc)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <div class="eyebrow mono"><span class="dot"></span>Election Day · Nov 3, 2026</div>
+    <h1>Who controls Congress.<br>What's on the ballot.</h1>
+  </div>
+  <div class="count mono" id="count" aria-label="Countdown to Election Day"></div>
+</header>
+
+<div class="grid">
+  <section class="card">
+    <div class="top"><h2>U.S. Senate · 100 seats</h2><button id="tg" aria-pressed="true">Highlight seats up</button></div>
+    <div class="ctrl"><span class="big R">Republican</span><span class="tag R mono">53–47</span></div>
+    <svg class="h" id="sen" viewBox="0 0 500 262" role="img" aria-label="Senate seating chart: 53 Republican, 47 Democratic-caucus"></svg>
+    <div class="legend"><span><i style="background:var(--d)"></i>Democratic caucus (47, incl. 2 independents)</span><span><i style="background:var(--r)"></i>Republican (53)</span></div>
+    <div class="nums mono">
+      <div><b>35</b><span>seats up</span></div>
+      <div><b class="D">13</b><span>D-held up</span></div>
+      <div><b class="R">22</b><span>R-held up</span></div>
+    </div>
+    <p class="note">35 = 33 regular races + 2 special elections (Ohio, Florida). Democrats need a net gain of <b>4</b> for 51 seats; a 50–50 tie goes to the Republican vice president.</p>
+  </section>
+
+  <section class="card">
+    <div class="top"><h2>U.S. House · 435 seats</h2><span class="tag mono" style="color:var(--acc)">ALL UP</span></div>
+    <div class="ctrl"><span class="big R">Republican</span><span class="tag R mono">218–212</span></div>
+    <svg class="h" id="hou" viewBox="0 0 500 262" role="img" aria-label="House seating chart"></svg>
+    <div class="legend"><span><i style="background:var(--d)"></i>Democrats (212)</span><span><i style="background:var(--r)"></i>Republicans (218)</span><span><i style="background:var(--i)"></i>Independent (1)</span><span><i style="border:1.5px solid var(--mute)"></i>Vacant (4)</span></div>
+    <div class="bar" title="Share of chamber"><i style="width:48.7%;background:var(--d)"></i><i style="width:.9%;background:var(--mute)"></i><i style="width:.2%;background:var(--i)"></i><i style="width:50.1%;background:var(--r)"></i></div>
+    <div class="nums mono">
+      <div><b>218</b><span>needed for majority</span></div>
+      <div><b>435</b><span>seats up</span></div>
+      <div><b>2026</b><span>new maps in several states</span></div>
+    </div>
+    <p class="note">Every House seat is on the ballot. Vacancies and special elections shift the count, and mid-decade redistricting in multiple states changed the map.</p>
+  </section>
+
+  <section class="card wide">
+    <div class="top"><h2>Senate battlegrounds to watch</h2></div>
+    <h3>Democratic-held</h3>
+    <div class="races">
+      <div class="race D"><b>Georgia</b><span>Incumbent D</span></div>
+      <div class="race D"><b>Michigan</b><span>Open seat</span></div>
+      <div class="race D"><b>New Hampshire</b><span>Open seat</span></div>
+      <div class="race D"><b>Minnesota</b><span>Open seat</span></div>
+    </div>
+    <h3>Republican-held</h3>
+    <div class="races">
+      <div class="race R"><b>North Carolina</b><span>Open seat</span></div>
+      <div class="race R"><b>Maine</b><span>Incumbent R</span></div>
+      <div class="race R"><b>Ohio</b><span>Special election</span></div>
+      <div class="race R"><b>Iowa</b><span>Open seat</span></div>
+      <div class="race R"><b>Alaska</b><span>Incumbent R</span></div>
+      <div class="race R"><b>Texas</b><span>R-held</span></div>
+      <div class="race R"><b>Florida</b><span>Special election</span></div>
+      <div class="race R"><b>Nebraska</b><span>R-held · independent challenger</span></div>
+    </div>
+  </section>
+</div>
+
+<footer class="mono">
+  Snapshot compiled from public reporting in early Oct 2026; chamber counts change with vacancies and special elections, and forecasters rate races differently. Verify with clerk.house.gov and senate.gov.
+</footer>
+</div>
+
+<script>
+function hemi(svg, groups, rows){
+  var total=groups.reduce(function(a,g){return a+g.n},0), cx=250, cy=244, R=228, r0=.4, radii=[], sum=0, i, j;
+  for(i=0;i<rows;i++){var r=r0+(1-r0)*i/(rows-1);radii.push(r);sum+=r}
+  var counts=radii.map(function(r){return Math.floor(total*r/sum)}), used=counts.reduce(function(a,b){return a+b},0);
+  for(i=rows-1;used<total;i=(i-1+rows)%rows){counts[i]++;used++}
+  var pts=[];
+  radii.forEach(function(r,ri){var k=counts[ri];for(j=0;j<k;j++){pts.push({a:Math.PI*(1-j/(k-1)),r:r})}});
+  pts.sort(function(p,q){return q.a-p.a||p.r-q.r});
+  var size=rows>6?3.5:6.4, out="", idx=0;
+  groups.forEach(function(g){
+    for(var n=0;n<g.n;n++,idx++){
+      var p=pts[idx], x=cx+p.r*R*Math.cos(p.a), y=cy-p.r*R*Math.sin(p.a), up=g.up===undefined||n<g.up;
+      var fill=g.hollow?'none':'var(--'+g.c+')', stroke=g.hollow?'stroke="var(--mute)" stroke-width="1.2"':'';
+      out+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+size+'" fill="'+fill+'" '+stroke+(up?' class="up"':' class="off"')+'/>';
+    }
+  });
+  svg.innerHTML=out;
+}
+var sen=document.getElementById('sen'), hou=document.getElementById('hou'), tg=document.getElementById('tg');
+hemi(sen,[{n:47,c:'d',up:13},{n:53,c:'r',up:22}],5);
+hemi(hou,[{n:212,c:'d'},{n:4,c:'mute',hollow:true},{n:1,c:'i'},{n:218,c:'r'}],9);
+function hl(){var on=tg.getAttribute('aria-pressed')==='true';sen.querySelectorAll('.off').forEach(function(c){c.style.opacity=on?.22:1})}
+tg.onclick=function(){tg.setAttribute('aria-pressed',tg.getAttribute('aria-pressed')!=='true');hl()};
+hl();
+function tick(){
+  var ms=new Date('2026-11-03T00:00:00-05:00')-new Date(); if(ms<0)ms=0;
+  var d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);
+  document.getElementById('count').innerHTML=[[d,'days'],[h,'hrs'],[m,'min']].map(function(x){return '<div><b>'+String(x[0]).padStart(2,'0')+'</b><span>'+x[1]+'</span></div>'}).join('');
+}
+tick();setInterval(tick,30000);
+</script>
+</body>
+</html>
